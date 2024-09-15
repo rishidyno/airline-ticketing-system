@@ -22,11 +22,11 @@ CMD ["./mvnw","package"]
 
 #CMD ["./mvnw","deploy"]
 
-RUN <<EOF
-echo $(pwd)
-echo $(ls /app/target)
-echo $(ls /app)
-EOF
+#RUN <<EOF
+#echo $(pwd)
+#echo $(ls /app/target)
+#echo $(ls /app)
+#EOF
 
 ## Run the jar file
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/target/airline-ticketing-system-0.0.1-SNAPSHOT.jar"]

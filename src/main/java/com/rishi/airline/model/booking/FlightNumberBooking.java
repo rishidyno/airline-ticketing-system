@@ -16,4 +16,3 @@ public class FlightNumberBooking {
     private List<Booking> bookings; // List of booked and canceled bookings
     private List<CanceledBooking> canceledBookings; // List of canceled bookings
 }
-

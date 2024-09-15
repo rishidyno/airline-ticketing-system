@@ -51,7 +51,7 @@ public class FlightService {
 
     // Update flight details
     public Flight updateFlight(String id, Flight flightDetails) {
-        Flight existingFlight = flightRepository.findById(id)
+        Flight existingFlight = flightRepository.findByFlightNumber(id)
                 .orElseThrow(() -> new FlightNotFoundException("Flight not found with id: " + id));
 
         // Update flight details

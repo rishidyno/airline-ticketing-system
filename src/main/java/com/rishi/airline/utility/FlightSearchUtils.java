@@ -34,7 +34,7 @@ public class FlightSearchUtils {
                 }
             }
         } else if (flightType.equals("A380")) {
-            // Example: A380 with 500 seats (50 rows, 10 seats per row - A, B, C, D, E, F, G, H, J, K)
+            // Example: A380 with 450 seats (50 rows, 10 seats per row - A, B, C, D, E, F, G, H, J, K)
             for (int row = 1; row <= 50; row++) {
                 for (char seat : new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'}) {
                     seats.add(new Seat(row, seat + ""));

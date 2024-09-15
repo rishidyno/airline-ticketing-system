@@ -9,4 +9,3 @@ public class BookingException extends RuntimeException {
         super(message);
     }
 }
-

@@ -19,4 +19,3 @@ public class Booking {
 
     private List<Seat> bookedSeats; // List of seats booked under this booking
 }
-
