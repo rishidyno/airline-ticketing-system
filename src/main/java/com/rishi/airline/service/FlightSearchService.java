@@ -1,6 +1,5 @@
 package com.rishi.airline.service;
 
-import com.rishi.airline.exception.FlightNotFoundException;
 import com.rishi.airline.exception.SearchException;
 import com.rishi.airline.model.booking.Booking;
 import com.rishi.airline.model.booking.BookingDate;
@@ -11,6 +10,8 @@ import com.rishi.airline.model.search.SearchResponse;
 import com.rishi.airline.repository.BookingAndCancellingRepository;
 import com.rishi.airline.repository.FlightRepository;
 import com.rishi.airline.utility.FlightSearchUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,14 @@ public class FlightSearchService {
     @Autowired
     private BookingAndCancellingRepository bookingAndCancellingRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(FlightSearchService.class);
+
     public List<SearchResponse> searchFlights(SearchRequest request) {
         String src = request.getSource();
         String destination = request.getDestination();
         String date = request.getDate();
+
+        logger.info("Searching flights for route: {} -> {} on {}", src, destination, date);
 
         String dayOfFlight = FlightSearchUtils.getDayOfWeekFromDate(date);
 
@@ -100,7 +105,8 @@ public class FlightSearchService {
         }
 
         if (availableFlightResponses.isEmpty()) {
-            throw new FlightNotFoundException("No available seats for the selected route on the given date.");
+            logger.warn("No flights found for the selected route on {}", date);
+            throw new SearchException("No available seats for the selected route on the given date.");
         }
 
         return availableFlightResponses;

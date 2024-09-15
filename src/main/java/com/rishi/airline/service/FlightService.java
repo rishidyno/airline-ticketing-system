@@ -70,7 +70,7 @@ public class FlightService {
 
     // Delete a flight
     public void deleteFlight(String id) {
-        Flight flight = flightRepository.findById(id)
+        Flight flight = flightRepository.findByFlightNumber(id)
                 .orElseThrow(() -> new FlightNotFoundException("Flight not found with id: " + id));
         flightRepository.delete(flight);
     }
